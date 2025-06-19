@@ -1,18 +1,13 @@
 import './App.css';
+import { Routes, Route } from 'react-router';
+import Home from './pages/Home';
 
 function App() {
   return (
     <>
-      <div className="container">
-        <div className="main">
-          <h1>Palabrify</h1>
-          <p>
-            Welcome to the place where you can learn new Spanish words everyday
-          </p>
-
-          <button>Start Learning</button>
-        </div>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </>
   );
 }
