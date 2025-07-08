@@ -1,6 +1,35 @@
 import { Menu } from 'lucide-react';
+import { useState } from 'react';
+
+const spanishWords = [
+  'casa',
+  'perro',
+  'gato',
+  'amor',
+  'feliz',
+  'vida',
+  'tiempo',
+  'día',
+  'noche',
+  'sol',
+  'luna',
+  'agua',
+  'comida',
+  // Add more words as needed
+];
 
 function Learn() {
+  const [currentWord, setCurrentWord] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const getRandomWord = () => {
+    setLoading(true);
+    const randomIndex = Math.floor(Math.random() * spanishWords.length);
+    const word = spanishWords[randomIndex];
+    setCurrentWord(word);
+    setLoading(false);
+  };
+
   return (
     <>
       <div className="navbar">
@@ -28,11 +57,17 @@ function Learn() {
               </select>
             </div>
 
-            <button className="button-container">New Word</button>
+            <button
+              className="button-container"
+              onClick={getRandomWord}
+              disabled={loading}
+            >
+              {loading ? 'Loading...' : 'New Word'}
+            </button>
           </div>
 
           <div className="result-container">
-            <h1>Palabra</h1>
+            <h1>{currentWord}</h1>
           </div>
         </div>
       </div>
